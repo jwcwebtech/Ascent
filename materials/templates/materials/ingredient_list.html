@@ -1,0 +1,7 @@
+<ul class="list">
+{% for ingredient in ingredient_list %}
+	<li>
+		{{ingredient.material.name}} ({{ingredient.concentration}}%) {{ingredient.amount}}
+	</li>
+{% endfor %}
+</ul>

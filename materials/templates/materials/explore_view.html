@@ -1,0 +1,36 @@
+{% extends "materials/base.html" %}
+{% block title %}Explore Materials{% endblock %}
+{% block content %}
+<h1>Explore by Tags</h1>
+<form>
+<div style="float: left; padding: 10px;">
+	<div style="float: left; padding: 10px;">
+		<h2>Filtering:</h2>
+		{% include "materials/tag_filter.html" with tag_list=tags filter_tag_ids=filter_tag_ids name="q"%}
+	</div>
+	<div style="float: left; padding: 10px;">
+		<h2>Excluding:</h2>
+		{% include "materials/tag_filter.html" with tag_list=tags filter_tag_ids=remove_tag_ids name="r"%}
+	</div>
+	<div style="float: left; clear: left; padding: 10px;">
+		How to match:<br><br>
+		<input id="oron" type="radio" name="or" value="on"{% if match_any %} checked{% endif %}><label for="oron"> Match materials with any of the selected filters.</label><br>
+		<input id="or" type="radio" name="or" value=""{% if not match_any %} checked{% endif %}><label for="or"> Match materials with all of the selected filters.</label>
+		<br><br>
+		<input type="submit" value="Update Filters">
+		<input type="reset" value="Reset Filters">
+		<br><br>
+	</div>
+</div>
+<div style="float: left; padding: 10px;">
+<h2>Top Notes</h2>
+{% include "materials/material_list.html" with material_list=top_notes %}
+<h2>Middle Notes</h2>
+{% include "materials/material_list.html" with material_list=middle_notes %}
+<h2>Bottom Notes</h2>
+{% include "materials/material_list.html" with material_list=bottom_notes %}
+<h2>Other</h2>
+{% include "materials/material_list.html" with material_list=other %}
+</div>
+</form>
+{% endblock %}

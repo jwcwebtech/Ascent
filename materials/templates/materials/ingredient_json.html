@@ -1,0 +1,9 @@
+[
+{% for ingredient in ingredient_list %}
+	{
+		"name": "{{ingredient.material.name}}",
+		"concentration": {{ingredient.concentration}},
+		"amount": {{ingredient.amount}}
+	},
+{% endfor %}
+]

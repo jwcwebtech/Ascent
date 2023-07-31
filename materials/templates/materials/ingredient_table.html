@@ -1,0 +1,18 @@
+<table>
+	<thead>
+		<tr>
+			<th>Ingredient</th>
+			<th>Concentration</th>
+			<th>Amount</th>
+		</tr>
+	</thead>
+	<tbody>
+{% for ingredient in ingredient_list %}
+		<tr>
+			<td>{{ingredient.material.name}}</td>
+			<td>{{ingredient.concentration}}%</td>
+			<td>{{ingredient.amount}}</td>
+		</tr>
+{% endfor %}
+	</tbody>
+</table>

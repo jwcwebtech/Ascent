@@ -1,0 +1,5 @@
+{% extends "materials/base.html" %}
+{% block title %}Materials List{% endblock %}
+{% block content %}
+	{% include "materials/material_list.html" with material_list=material_list %}
+{% endblock %}

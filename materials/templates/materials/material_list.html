@@ -1,0 +1,12 @@
+<ul class="list">
+{% for material in material_list %}
+	<li>
+		<a href="{% url 'materials:material_detail' material.id %}">{{material.name}}</a>
+		{% for tag in material.tags.all %}
+			{% if tag.category.id == 2 or tag.category.id == 3 %}
+			{% include "materials/tag.html" with tag=tag %}
+			{% endif %}
+		{% endfor %}
+	</li>
+{% endfor %}
+</ul>

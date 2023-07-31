@@ -1,0 +1,8 @@
+{% extends "materials/base.html" %}
+{% block title %}Tag Details{% endblock %}
+{% block content %}
+<h1>{{ tag.name }}</h1>
+{% include "materials/tag.html" with tag=tag %}
+<p>{{ tag.description|linebreaks }}</p>
+{% include "materials/material_list.html" with material_list=tag.materials.all %}
+{% endblock %}

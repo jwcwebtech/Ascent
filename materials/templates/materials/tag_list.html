@@ -1,0 +1,7 @@
+<ul class="list">
+{% for tag in tag_list %}
+	<li>
+		<a href="{% url 'materials:tag_detail' tag.id %}">{% include "materials/tag.html" with tag=tag %}</a>
+	</li>
+{% endfor %}
+</ul>

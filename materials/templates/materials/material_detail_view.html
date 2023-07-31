@@ -1,0 +1,75 @@
+{% extends "materials/base.html" %}
+{% block title %}Material Details{% endblock %}
+{% block content %}
+<h1>{{ material.name }}</h1>
+<p>{{ material.description|linebreaks }}</p>
+<p><a href="{% url 'materials:explore' %}?or=on{% for tag in material.tags.all %}{% if tag.category.id == 2 %}&q={{tag.id}}{% endif %}{% endfor %}">Explore materials with similar aromas.</a></p>
+<div class="floater">
+<h2>Ingredients</h2>
+{% include "materials/ingredient_table.html" with ingredient_list=material.ingredients.all %}
+</div>
+<div class="floater">
+<h2>Tags</h2>
+<div class="inline-list">
+{% include "materials/tag_list.html" with tag_list=material.tags.all %}
+</div>
+<h2>Inherited Tags</h2>
+<div class="inline-list">
+{% include "materials/tag_list.html" with tag_list=material.ingredient_tags %}
+</div>
+</div>
+<div style="clear: both;">&nbsp;</div>
+<div class="floater">
+<h2>Recipe</h2>
+<form>
+	<input type="number" min="0" max="100" name="concentration" value="{{concentration}}"> Concentration (0-100)%<br><br>
+	[ Perfume 20-40% | Eur de Parfum 15-20% | Eau de Toilette 5-15% | Eau de Cologne 2-4% | Eau Fraiche 1-3% ]<br><br>
+	<input type="number" min="0" name="target" value="{{target}}"> Target Amount (g or ml)<br><br>
+	<input type="submit" value="Update Recipe Amounts"><br><br>
+</form>
+{% include "materials/table.html" with rows=recipe %}
+</div>
+<div class="floater">
+<h2>Convert</h2>
+I <select id="have"><option>have</option><option>need</option></select> <input type="number" min="0" id="amount" name="amount" value="5"> (g or ml) of solution.
+It has <input type="number" min="0" max="100" id="original_concentration" name="original_concentration" value="10">% concentration.
+I want it to have <input type="number" min="0.01" max="100" id="target_concentration" name="target_concentration" value="5">% concentration.
+<input type="button" value="Calculate" onclick="calculate_change()">
+<div id="answer"></div>
+</div>
+<script>
+function calculate_change() {
+	var answer = "";
+	var amount = parseFloat(document.getElementById("amount").value);
+	var original = parseFloat(document.getElementById("original_concentration").value);
+	var target = parseFloat(document.getElementById("target_concentration").value);
+	
+	if (document.getElementById("have").value == "have") {
+		answer += "Take " + amount + " (g or ml) of the solution and add ";
+		if (original < target) {
+			var d = ((target - original) / 100 * amount / (1 - target / 100)).toFixed(3);
+			answer += d + " (g or ml) of material.";
+		} else if (original == target) {
+			answer += "nothing.";
+		} else {
+			var d = ((original / target - 1) * amount).toFixed(3);
+			answer += d + " (g or ml) of diluent.";
+		}
+	} else {
+		var total_material = amount * target / 100;
+		var total_diluent = amount * (1 - target / 100);
+		if (original < target) {
+			var d = (amount + (original - target) / 100 * amount / (1 - original / 100)).toFixed(3);
+			answer += "Take " + d + " (g or ml) of the solution and fill the rest with material.";
+		} else if (original == target) {
+			answer = "Take " + d + " (g or ml) of the solution.";
+		} else {
+			var d = (amount + (target / original - 1) * amount).toFixed(3);
+			answer += "Take " + d + " (g or ml) of the solution and fill the rest with diluent.";
+		}
+	}
+	document.getElementById("answer").innerHTML = answer;
+}
+var ingredients = {% include "materials/ingredient_json.html" with ingredient_list=material.ingredients.all %}
+</script>
+{% endblock %}

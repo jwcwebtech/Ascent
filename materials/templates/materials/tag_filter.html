@@ -1,0 +1,8 @@
+<ul class="list">
+{% for tag in tag_list %}
+	<li>
+		<input name="{{name}}" value="{{tag.id}}" type="checkbox"{% if tag.id in filter_tag_ids %} checked{% endif %}>
+		<a href="{% url 'materials:tag_detail' tag.id %}" target="_new">{% include "materials/tag.html" with tag=tag %}</a>
+	</li>
+{% endfor %}
+</ul>
