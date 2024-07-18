@@ -30,6 +30,8 @@ Ascent can store and calculate perfume recipes to provide different concentratio
 - Eau de Parfum
 - Parfum
 
+<img src="images/recipes.png">
+
 ### Catalogue
 
 Ascent categorizes materials and recipes based on the following concepts:
@@ -39,3 +41,6 @@ Ascent categorizes materials and recipes based on the following concepts:
 - Special Properties (fixative, natural essential oil)
 - Srouce (stores, online shop, a friend)
 
+Users can explore this catalogue by filtering or excluding various tags:
+
+<img src="images/explore.png">
