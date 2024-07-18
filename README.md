@@ -1,4 +1,4 @@
-![GitHub top language](https://img.shields.io/github/languages/top/jwcwebtech/Ascent) ![GitHub Release](https://img.shields.io/github/v/release/jwcwebtech/Ascent) ![GitHub last commit](https://img.shields.io/github/last-commit/jwcwebtech/Ascent) ![Static Badge](https://img.shields.io/badge/Platform-Linux-green) ![Static Badge](https://img.shields.io/badge/Platform-Windows-green)
+![GitHub top language](https://img.shields.io/github/languages/top/jwcwebtech/Ascent) ![GitHub last commit](https://img.shields.io/github/last-commit/jwcwebtech/Ascent) ![Static Badge](https://img.shields.io/badge/Platform-Linux-green) ![Static Badge](https://img.shields.io/badge/Platform-Windows-green)
 
 Ascent is a Django project I use to track my collection of oils, scents, materials, and recipes.
 
@@ -16,9 +16,18 @@ For now the sqlite3 db file is included in this repository so my data can move w
 
 ## Features
 
-### Admin
+### Catalogue
 
-As with any typical Django project, Ascent has an admin section to edit materials, ingredients, categories, and tags.
+Ascent categorizes materials and recipes based on the following concepts:
+
+- Notes (woody, floral, sweet, citrus)
+- Levels (top, middle, bottom)
+- Special Properties (fixative, natural essential oil)
+- Srouce (stores, online shop, a friend)
+
+Users can explore this catalogue by filtering or excluding various tags:
+
+<img src="images/explore.png">
 
 ### Recipes
 
@@ -32,15 +41,6 @@ Ascent can store and calculate perfume recipes to provide different concentratio
 
 <img src="images/recipes.png">
 
-### Catalogue
+### Admin
 
-Ascent categorizes materials and recipes based on the following concepts:
-
-- Notes (woody, floral, sweet, citrus)
-- Levels (top, middle, bottom)
-- Special Properties (fixative, natural essential oil)
-- Srouce (stores, online shop, a friend)
-
-Users can explore this catalogue by filtering or excluding various tags:
-
-<img src="images/explore.png">
+As with any typical Django project, Ascent has an admin section to edit materials, ingredients, categories, and tags.
