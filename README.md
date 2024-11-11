@@ -43,4 +43,4 @@ Ascent can store and calculate perfume recipes to provide different concentratio
 
 ### Admin
 
-As with any typical Django project, Ascent has an admin section to edit materials, ingredients, categories, and tags.
+Ascent has an admin section to edit materials, ingredients, categories, and tags.
